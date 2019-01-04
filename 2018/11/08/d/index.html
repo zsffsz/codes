@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="ZsffsZ&#39;s Blog">
 <meta property="og:description" content="eleme红包修复2上次我们发现了解题思路，那我们就来实现它。所以源代码应该保持不变，稍微在账号方面改变一下即可。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-04T17:23:47.728Z">
+<meta property="og:updated_time" content="2019-01-04T18:00:58.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="d">
 <meta name="twitter:description" content="eleme红包修复2上次我们发现了解题思路，那我们就来实现它。所以源代码应该保持不变，稍微在账号方面改变一下即可。">
@@ -313,7 +313,8 @@
       
         <h1 id="eleme红包修复2"><a href="#eleme红包修复2" class="headerlink" title="eleme红包修复2"></a>eleme红包修复2</h1><p>上次我们发现了解题思路，那我们就来实现它。<br>所以源代码应该保持不变，稍微在账号方面改<br>变一下即可。<br><a id="more"></a></p>
 <h2 id="begin"><a href="#begin" class="headerlink" title="begin"></a>begin</h2><p>不过由于官方代码结构过于复杂，仅仅只是一个<br>请求是不用这么复杂的。所以我决定自己写一个。</p>
-<p>首先要解析发送了什么请求，我们来看一下领<br>红包页面的请求体:<br><code>{
+<p>首先要解析发送了什么请求，我们来看一下领<br>红包页面的请求体:</p>
+<p><code>{
       device_id: &#39;&#39;,
       group_sn: query.sn,
       hardware_id: &#39;&#39;,
@@ -325,7 +326,8 @@
       unionid: &#39;fuck&#39;, 
       weixin_avatar: &#39;&#39;,
       weixin_username: &#39;&#39;
-}</code><br>这个fuck是工作人员的恶意吗233，我们先不管这么多<br>，我们可以看到group_sn是cookie里的，platform<br>和eleme_key也是cookie里的。只有一个让我们输入<br>的是phone.</p>
+}</code></p>
+<p>这个fuck是工作人员的恶意吗233，我们先不管这么多<br>，我们可以看到group_sn是cookie里的，platform<br>和eleme_key也是cookie里的。只有一个让我们输入<br>的是phone.</p>
 <p>???</p>
 <p>我记得可以用qq注册的，那手机号不是没有吗。<br>于是我又解析了一下cookie：</p>
 <p>里面有个userinfo和eleme_key，而key里的后面半段<br>是我的qq号。<br>整段cookie没有手机号，如果没有加密的话。</p>
@@ -454,7 +456,7 @@
               
                 <a href="/codes/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
