@@ -6,7 +6,7 @@
   <link href="/codes/atom.xml" rel="self"/>
   
   <link href="https://zsffsz.github.io/codes/"/>
-  <updated>2019-01-04T16:33:33.510Z</updated>
+  <updated>2019-01-04T17:40:06.720Z</updated>
   <id>https://zsffsz.github.io/codes/</id>
   
   <author>
@@ -17,20 +17,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>e</title>
+    <link href="https://zsffsz.github.io/codes/2018/11/09/e/"/>
+    <id>https://zsffsz.github.io/codes/2018/11/09/e/</id>
+    <published>2018-11-09T11:40:41.000Z</published>
+    <updated>2019-01-04T17:40:06.720Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="eleme红包修复3"><a href="#eleme红包修复3" class="headerlink" title="eleme红包修复3"></a>eleme红包修复3</h1><p>上次我们搞定了一次请求的发送，可是执行后并没有多大反应，<br>小的红包也没领取到。那么就先来看看eleme页面的请求方式。<br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>在开发者模式下可以看到有个302的put请求在我们的post之前。<br>那么我们来看一下这个put请求:<br><code>{                url:</code><a href="https://h5.ele.me/restapi/v1/weixin/phone`" target="_blank" rel="external">https://h5.ele.me/restapi/v1/weixin/phone`</a>,<br>                headers:{<br>                  host:”h5.ele.me”,<br>                  ‘Content-Type’:’application/x-www-form-urlencoded; charset=UTF-8’,<br>                  ‘X-Shard’:<code>eosid=</code>,<br>                  referer: <code>h5.ele.me/hongbao/</code>,<br>                  ‘user-agent’: ‘Mozilla/5.0 (Linux; Android 6.0; PRO 6 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043221 Safari/537.36 V1_AND_SQ_7.0.0_676_YYB_D QQ/7.0.0.3135 NetType/WIFI WebP/0.3.0 Pixel/1080’<br>                },<br>                body:<br>}</p><p><code>这个前置的put请求其实起到一个类似登录的作用(我认为，勿喷)。那我们把他们加起来。但不能直接放在后面，因为我们知道这个nodejs多半是异步操作，请求也必须是异步的。所以把它加到回调函数里:</code><br>requset.put(option,(err)=&gt;{<br>    if(!err){<br>        request.post(option,(err,res)=&gt;{<br>            //do something<br>        })<br>    }<br>})<br>`<br>这样就完成了。末尾粘贴整个代码。</p><h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p>我们知道懒是第一生产力，发十个请求还要这么麻烦，我们完全可以写到一起。<br>当然具体下次说</p><p>首先不可能用for循环，刚刚开始学的我也不会用promise，await等等，那我们<br>想，接受到响应之后再发送不就行了。</p><p>就类似于<br><code>function getHongbao(ctx){    request.post(option,(err,data)=&gt;{        return getHongbao(data);    })}</code></p><h2 id="核心代码部分"><a href="#核心代码部分" class="headerlink" title="核心代码部分"></a>核心代码部分</h2><p><code>function lhb(number){            var phone=mobile;            var sns=cookie[temp];            var putoption={                etc......            }            var postDt={                etc......            }            postDt=querystring.stringify(postDt);            var postURL=</code><a href="https://h5.ele.me/restapi/marketing/promotion/weixin/${sns.openid}`" target="_blank" rel="external">https://h5.ele.me/restapi/marketing/promotion/weixin/${sns.openid}`</a>;<br>            var postoption={<br>                url:postURL,<br>                headers:{<br>                  ‘Content-Type’:’application/x-www-form-urlencoded; charset=UTF-8’,<br>                  ‘Content-Length’:Buffer.byteLength(postDt)<br>                },<br>                body:JSON.stringify(postDt)<br>            }<br>            request.put(putoption,function(err,body) {<br>                if(err){<br>                    console.log(err);<br>                }else{<br>                    request.post(postoption,function(err,res,body){<br>                        if(err){<br>                            console.log(err);<br>                        }else{<br>                            rsd(“成功领取”+JSON.parse(res.body).promotion_records[temp].amount+”元”+” “+phone);<br>                          return 0;<br>                        }<br>                    });<br>                }<br>            });<br>}<br>`</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;eleme红包修复3&quot;&gt;&lt;a href=&quot;#eleme红包修复3&quot; class=&quot;headerlink&quot; title=&quot;eleme红包修复3&quot;&gt;&lt;/a&gt;eleme红包修复3&lt;/h1&gt;&lt;p&gt;上次我们搞定了一次请求的发送，可是执行后并没有多大反应，&lt;br&gt;小的红包也没领取到。那么就先来看看eleme页面的请求方式。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>d</title>
+    <link href="https://zsffsz.github.io/codes/2018/11/08/d/"/>
+    <id>https://zsffsz.github.io/codes/2018/11/08/d/</id>
+    <published>2018-11-08T07:10:21.000Z</published>
+    <updated>2019-01-04T17:23:47.728Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="eleme红包修复2"><a href="#eleme红包修复2" class="headerlink" title="eleme红包修复2"></a>eleme红包修复2</h1><p>上次我们发现了解题思路，那我们就来实现它。<br>所以源代码应该保持不变，稍微在账号方面改<br>变一下即可。<br><a id="more"></a></p><h2 id="begin"><a href="#begin" class="headerlink" title="begin"></a>begin</h2><p>不过由于官方代码结构过于复杂，仅仅只是一个<br>请求是不用这么复杂的。所以我决定自己写一个。</p><p>首先要解析发送了什么请求，我们来看一下领<br>红包页面的请求体:<br><code>{      device_id: &#39;&#39;,      group_sn: query.sn,      hardware_id: &#39;&#39;,      method: &#39;phone&#39;,      phone,      platform: query.platform,      sign: sns.eleme_key,      track_id: &#39;&#39;,      unionid: &#39;fuck&#39;,       weixin_avatar: &#39;&#39;,      weixin_username: &#39;&#39;}</code><br>这个fuck是工作人员的恶意吗233，我们先不管这么多<br>，我们可以看到group_sn是cookie里的，platform<br>和eleme_key也是cookie里的。只有一个让我们输入<br>的是phone.</p><p>???</p><p>我记得可以用qq注册的，那手机号不是没有吗。<br>于是我又解析了一下cookie：</p><p>里面有个userinfo和eleme_key，而key里的后面半段<br>是我的qq号。<br>整段cookie没有手机号，如果没有加密的话。</p><p>那么很显然，手机号可有可无，也就是可以伪造。</p><h2 id="after"><a href="#after" class="headerlink" title="after"></a>after</h2><p>找了几个qq号后，分别在饿了么注册，获取它们的cookie，<br>那么手机号不可能是12345678900吧，基础的构成方式肯定<br>有检验。<br>那么我们就按照构成方法随机出来几个<br>然后就是请求<br>主要代码<br><code>request.post(postoption,function(err,res,body){    if(err){        console.log(err);    }else{        console.log(JSON.parse(res.body));    }});</code><br>这样就可以发送一次请求了</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;eleme红包修复2&quot;&gt;&lt;a href=&quot;#eleme红包修复2&quot; class=&quot;headerlink&quot; title=&quot;eleme红包修复2&quot;&gt;&lt;/a&gt;eleme红包修复2&lt;/h1&gt;&lt;p&gt;上次我们发现了解题思路，那我们就来实现它。&lt;br&gt;所以源代码应该保持不变，稍微在账号方面改&lt;br&gt;变一下即可。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c</title>
+    <link href="https://zsffsz.github.io/codes/2018/11/07/c/"/>
+    <id>https://zsffsz.github.io/codes/2018/11/07/c/</id>
+    <published>2018-11-07T05:50:41.000Z</published>
+    <updated>2019-01-04T16:55:46.992Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="关于饿了么领红包修复"><a href="#关于饿了么领红包修复" class="headerlink" title="关于饿了么领红包修复"></a>关于饿了么领红包修复</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这个应该用过的人非常多，但自从今年上半年他们改了<br>验证码，那个在github上的人也没有继续更新代码，<br>于是我们可不可以自己手动修复呢?<br><a id="more"></a></p><h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>让我白手起家显然是不可能的，毕竟也是小白，所以还是<br>要借助源代码。<br>为了节省时间，我把核心代码贴出来。<br><code>await request.put(</code>/restapi/v1/weixin/${sns.openid}/phone<code>, {      sign: sns.eleme_key,      phone})</code><br>本来之前我也什么都看不懂，但到了这里应该很明确<br>了，其实就是发送一个手机号的请求。</p><p>那怎么会失效呢，我们看看官方解释:<br>由于限制手机每天领取的数量上限以及一些其他原因。</p><p>那就很明白了，手机号不够。或者说是账号不够。</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>只需要解决账号问题即可，但现在限制一机一号，很难<br>造出大量的手机号。那我们可以用第三方的qq号来代替<br>，而网络上的一些僵尸号非常多，我们完全可以创造出<br>大量的账号。具体实现将在以后写出。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;关于饿了么领红包修复&quot;&gt;&lt;a href=&quot;#关于饿了么领红包修复&quot; class=&quot;headerlink&quot; title=&quot;关于饿了么领红包修复&quot;&gt;&lt;/a&gt;关于饿了么领红包修复&lt;/h1&gt;&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;这个应该用过的人非常多，但自从今年上半年他们改了&lt;br&gt;验证码，那个在github上的人也没有继续更新代码，&lt;br&gt;于是我们可不可以自己手动修复呢?&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>b</title>
     <link href="https://zsffsz.github.io/codes/2018/11/04/b/"/>
     <id>https://zsffsz.github.io/codes/2018/11/04/b/</id>
     <published>2018-11-04T15:54:21.000Z</published>
-    <updated>2019-01-04T16:33:33.510Z</updated>
+    <updated>2019-01-04T16:38:55.370Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="碰到的第一个问题"><a href="#碰到的第一个问题" class="headerlink" title="碰到的第一个问题:"></a>碰到的第一个问题:</h1><p>##比如如下代码获取到一个json<br><code>let data=getDetails(ctx);data.name;//得到的是undefined</code></p><h2 id="思考"><a href="#思考" class="headerlink" title="思考:"></a>思考:</h2><p>加上一句<br><code>data = eval(&#39;(&#39;+data+&#39;)&#39;);</code></p><h2 id="原因"><a href="#原因" class="headerlink" title="原因:"></a>原因:</h2><p>一般返回的是一串字符串，所以不能直接使用，<br>可以用eval()将字符串转换为json对象。</p><h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2:"></a>问题2:</h2><p>那为什么要加这中间这一串<br>其实可以看这一个输出<br>`<br>console.log(eval(‘{}’))//undefined</p><p>console.log(eval(‘({})’))//Object[object]<br>`<br>由于eval是执行这段代码，而{}是默认加在头尾的所以要加()</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>但是其实更建议使用JSON.parse();<br>当时脑子抽了给忘了</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="碰到的第一个问题"><a href="#碰到的第一个问题" class="headerlink" title="碰到的第一个问题:"></a>碰到的第一个问题:</h1><h2 id="比如如下代码获取到一个json"><a href="#比如如下代码获取到一个json" class="headerlink" title="比如如下代码获取到一个json"></a>比如如下代码获取到一个json</h2><p><code>let data=getDetails(ctx);data.name;//得到的是undefined</code><br><a id="more"></a></p><h2 id="思考"><a href="#思考" class="headerlink" title="思考:"></a>思考:</h2><p>加上一句<br><code>data = eval(&#39;(&#39;+data+&#39;)&#39;);</code></p><h2 id="原因"><a href="#原因" class="headerlink" title="原因:"></a>原因:</h2><p>一般返回的是一串字符串，所以不能直接使用，<br>可以用eval()将字符串转换为json对象。</p><h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2:"></a>问题2:</h2><p>那为什么要加这中间这一串<br>其实可以看这一个输出<br>`<br>console.log(eval(‘{}’))//undefined</p><p>console.log(eval(‘({})’))//Object[object]<br>`<br>由于eval是执行这段代码，而{}是默认加在头尾的所以要加()</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>但是其实更建议使用JSON.parse();<br>当时脑子抽了给忘了</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;碰到的第一个问题&quot;&gt;&lt;a href=&quot;#碰到的第一个问题&quot; class=&quot;headerlink&quot; title=&quot;碰到的第一个问题:&quot;&gt;&lt;/a&gt;碰到的第一个问题:&lt;/h1&gt;&lt;p&gt;##比如如下代码获取到一个json&lt;br&gt;&lt;code&gt;let data=getDetai
-      
+      &lt;h1 id=&quot;碰到的第一个问题&quot;&gt;&lt;a href=&quot;#碰到的第一个问题&quot; class=&quot;headerlink&quot; title=&quot;碰到的第一个问题:&quot;&gt;&lt;/a&gt;碰到的第一个问题:&lt;/h1&gt;&lt;h2 id=&quot;比如如下代码获取到一个json&quot;&gt;&lt;a href=&quot;#比如如下代码获取到一个json&quot; class=&quot;headerlink&quot; title=&quot;比如如下代码获取到一个json&quot;&gt;&lt;/a&gt;比如如下代码获取到一个json&lt;/h2&gt;&lt;p&gt;&lt;code&gt;let data=getDetails(ctx);
+data.name;//得到的是undefined&lt;/code&gt;&lt;br&gt;
     
     </summary>
     

@@ -81,13 +81,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZsffsZ&#39;s Blog">
-<meta property="og:url" content="https://zsffsz.github.io/codes/archives/2018/10/index.html">
+<meta name="description" content="关于饿了么领红包修复起因这个应该用过的人非常多，但自从今年上半年他们改了验证码，那个在github上的人也没有继续更新代码，于是我们可不可以自己手动修复呢?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c">
+<meta property="og:url" content="https://zsffsz.github.io/codes/2018/11/07/c/index.html">
 <meta property="og:site_name" content="ZsffsZ&#39;s Blog">
+<meta property="og:description" content="关于饿了么领红包修复起因这个应该用过的人非常多，但自从今年上半年他们改了验证码，那个在github上的人也没有继续更新代码，于是我们可不可以自己手动修复呢?">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-04T16:55:46.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZsffsZ&#39;s Blog">
+<meta name="twitter:title" content="c">
+<meta name="twitter:description" content="关于饿了么领红包修复起因这个应该用过的人非常多，但自从今年上半年他们改了验证码，那个在github上的人也没有继续更新代码，于是我们可不可以自己手动修复呢?">
 
 
 
@@ -117,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://zsffsz.github.io/codes/archives/2018/10/"/>
+  <link rel="canonical" href="https://zsffsz.github.io/codes/2018/11/07/c/"/>
 
 
 
 
 
-  <title>Archive | ZsffsZ's Blog</title>
+  <title>c | ZsffsZ's Blog</title>
   
 
 
@@ -142,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,74 +230,152 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 5 posts in total. Keep on posting.
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zsffsz.github.io/codes/codes/2018/11/07/c/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZsffsZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/codes/images/123.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZsffsZ's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/codes/2018/10/24/a/" itemprop="url">
-              
-                <span itemprop="name">a</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">c</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-24T19:46:35+08:00"
-              content="2018-10-24" >
-          10-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-07T13:50:41+08:00">
+                2018-11-07
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h1 id="关于饿了么领红包修复"><a href="#关于饿了么领红包修复" class="headerlink" title="关于饿了么领红包修复"></a>关于饿了么领红包修复</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这个应该用过的人非常多，但自从今年上半年他们改了<br>验证码，那个在github上的人也没有继续更新代码，<br>于是我们可不可以自己手动修复呢?<br><a id="more"></a></p>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>让我白手起家显然是不可能的，毕竟也是小白，所以还是<br>要借助源代码。<br>为了节省时间，我把核心代码贴出来。<br><code>await request.put(</code>/restapi/v1/weixin/${sns.openid}/phone<code>, {
+      sign: sns.eleme_key,
+      phone
+})</code><br>本来之前我也什么都看不懂，但到了这里应该很明确<br>了，其实就是发送一个手机号的请求。</p>
+<p>那怎么会失效呢，我们看看官方解释:<br>由于限制手机每天领取的数量上限以及一些其他原因。</p>
+<p>那就很明白了，手机号不够。或者说是账号不够。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>只需要解决账号问题即可，但现在限制一机一号，很难<br>造出大量的手机号。那我们可以用第三方的qq号来代替<br>，而网络上的一些僵尸号非常多，我们完全可以创造出<br>大量的账号。具体实现将在以后写出。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/codes/2018/11/04/b/" rel="next" title="b">
+                <i class="fa fa-chevron-left"></i> b
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/codes/2018/11/08/d/" rel="prev" title="d">
+                d <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -301,6 +383,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -321,8 +407,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -377,6 +472,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于饿了么领红包修复"><span class="nav-number">1.</span> <span class="nav-text">关于饿了么领红包修复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">1.2.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">1.3.</span> <span class="nav-text">解决</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -517,6 +628,10 @@
 
 
   
+  <script type="text/javascript" src="/codes/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/codes/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
