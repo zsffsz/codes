@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="ZsffsZ&#39;s Blog">
 <meta property="og:description" content="eleme红包修复2上次我们发现了解题思路，那我们就来实现它。所以源代码应该保持不变，稍微在账号方面改变一下即可。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-04T18:00:58.687Z">
+<meta property="og:updated_time" content="2019-01-04T18:31:19.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="d">
 <meta name="twitter:description" content="eleme红包修复2上次我们发现了解题思路，那我们就来实现它。所以源代码应该保持不变，稍微在账号方面改变一下即可。">
@@ -314,31 +314,14 @@
         <h1 id="eleme红包修复2"><a href="#eleme红包修复2" class="headerlink" title="eleme红包修复2"></a>eleme红包修复2</h1><p>上次我们发现了解题思路，那我们就来实现它。<br>所以源代码应该保持不变，稍微在账号方面改<br>变一下即可。<br><a id="more"></a></p>
 <h2 id="begin"><a href="#begin" class="headerlink" title="begin"></a>begin</h2><p>不过由于官方代码结构过于复杂，仅仅只是一个<br>请求是不用这么复杂的。所以我决定自己写一个。</p>
 <p>首先要解析发送了什么请求，我们来看一下领<br>红包页面的请求体:</p>
-<p><code>{
-      device_id: &#39;&#39;,
-      group_sn: query.sn,
-      hardware_id: &#39;&#39;,
-      method: &#39;phone&#39;,
-      phone,
-      platform: query.platform,
-      sign: sns.eleme_key,
-      track_id: &#39;&#39;,
-      unionid: &#39;fuck&#39;, 
-      weixin_avatar: &#39;&#39;,
-      weixin_username: &#39;&#39;
-}</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      device_id: &apos;&apos;,</div><div class="line">      group_sn: query.sn,</div><div class="line">      hardware_id: &apos;&apos;,</div><div class="line">      method: &apos;phone&apos;,</div><div class="line">      phone,</div><div class="line">      platform: query.platform,</div><div class="line">      sign: sns.eleme_key,</div><div class="line">      track_id: &apos;&apos;,</div><div class="line">      unionid: &apos;fuck&apos;, </div><div class="line">      weixin_avatar: &apos;&apos;,</div><div class="line">      weixin_username: &apos;&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个fuck是工作人员的恶意吗233，我们先不管这么多<br>，我们可以看到group_sn是cookie里的，platform<br>和eleme_key也是cookie里的。只有一个让我们输入<br>的是phone.</p>
 <p>???</p>
 <p>我记得可以用qq注册的，那手机号不是没有吗。<br>于是我又解析了一下cookie：</p>
 <p>里面有个userinfo和eleme_key，而key里的后面半段<br>是我的qq号。<br>整段cookie没有手机号，如果没有加密的话。</p>
 <p>那么很显然，手机号可有可无，也就是可以伪造。</p>
-<h2 id="after"><a href="#after" class="headerlink" title="after"></a>after</h2><p>找了几个qq号后，分别在饿了么注册，获取它们的cookie，<br>那么手机号不可能是12345678900吧，基础的构成方式肯定<br>有检验。<br>那么我们就按照构成方法随机出来几个<br>然后就是请求<br>主要代码<br><code>request.post(postoption,function(err,res,body){
-    if(err){
-        console.log(err);
-    }else{
-        console.log(JSON.parse(res.body));
-    }
-});</code><br>这样就可以发送一次请求了</p>
+<h2 id="after"><a href="#after" class="headerlink" title="after"></a>after</h2><p>找了几个qq号后，分别在饿了么注册，获取它们的cookie，<br>那么手机号不可能是12345678900吧，基础的构成方式肯定<br>有检验。<br>那么我们就按照构成方法随机出来几个<br>然后就是请求<br>主要代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">request.post(postoption,function(err,res,body)&#123;</div><div class="line">    if(err)&#123;</div><div class="line">        console.log(err);</div><div class="line">    &#125;else&#123;</div><div class="line">        console.log(JSON.parse(res.body));</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>这样就可以发送一次请求了</p>
 
       
     </div>

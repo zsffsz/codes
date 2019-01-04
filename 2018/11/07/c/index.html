@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="ZsffsZ&#39;s Blog">
 <meta property="og:description" content="关于饿了么领红包修复起因这个应该用过的人非常多，但自从今年上半年他们改了验证码，那个在github上的人也没有继续更新代码，于是我们可不可以自己手动修复呢?">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-04T16:55:46.992Z">
+<meta property="og:updated_time" content="2019-01-04T18:31:26.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c">
 <meta name="twitter:description" content="关于饿了么领红包修复起因这个应该用过的人非常多，但自从今年上半年他们改了验证码，那个在github上的人也没有继续更新代码，于是我们可不可以自己手动修复呢?">
@@ -312,10 +312,8 @@
 
       
         <h1 id="关于饿了么领红包修复"><a href="#关于饿了么领红包修复" class="headerlink" title="关于饿了么领红包修复"></a>关于饿了么领红包修复</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这个应该用过的人非常多，但自从今年上半年他们改了<br>验证码，那个在github上的人也没有继续更新代码，<br>于是我们可不可以自己手动修复呢?<br><a id="more"></a></p>
-<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>让我白手起家显然是不可能的，毕竟也是小白，所以还是<br>要借助源代码。<br>为了节省时间，我把核心代码贴出来。<br><code>await request.put(</code>/restapi/v1/weixin/${sns.openid}/phone<code>, {
-      sign: sns.eleme_key,
-      phone
-})</code><br>本来之前我也什么都看不懂，但到了这里应该很明确<br>了，其实就是发送一个手机号的请求。</p>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>让我白手起家显然是不可能的，毕竟也是小白，所以还是<br>要借助源代码。<br>为了节省时间，我把核心代码贴出来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">await request.put(`/restapi/v1/weixin/$&#123;sns.openid&#125;/phone`, &#123;</div><div class="line">      sign: sns.eleme_key,</div><div class="line">      phone</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>本来之前我也什么都看不懂，但到了这里应该很明确<br>了，其实就是发送一个手机号的请求。</p>
 <p>那怎么会失效呢，我们看看官方解释:<br>由于限制手机每天领取的数量上限以及一些其他原因。</p>
 <p>那就很明白了，手机号不够。或者说是账号不够。</p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>只需要解决账号问题即可，但现在限制一机一号，很难<br>造出大量的手机号。那我们可以用第三方的qq号来代替<br>，而网络上的一些僵尸号非常多，我们完全可以创造出<br>大量的账号。具体实现将在以后写出。</p>
