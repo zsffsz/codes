@@ -83,17 +83,17 @@
 
 
 
-<meta name="description" content="碰到的第一个问题:##比如如下代码获取到一个jsonlet data=getDetails(ctx); data.name;//得到的是undefined ##解决方法:加上一句data = eval(&amp;#39;(&amp;#39;+data+&amp;#39;)&amp;#39;);">
+<meta name="description" content="碰到的第一个问题:##比如如下代码获取到一个jsonlet data=getDetails(ctx); data.name;//得到的是undefined 思考:加上一句data = eval(&amp;#39;(&amp;#39;+data+&amp;#39;)&amp;#39;); 原因:一般返回的是一串字符串，所以不能直接使用，可以用eval()将字符串转换为json对象。 问题2:那为什么要加这中间这一串其实可以看这一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="b">
 <meta property="og:url" content="https://zsffsz.github.io/codes/2018/11/04/b/index.html">
 <meta property="og:site_name" content="ZsffsZ&#39;s Blog">
-<meta property="og:description" content="碰到的第一个问题:##比如如下代码获取到一个jsonlet data=getDetails(ctx); data.name;//得到的是undefined ##解决方法:加上一句data = eval(&amp;#39;(&amp;#39;+data+&amp;#39;)&amp;#39;);">
+<meta property="og:description" content="碰到的第一个问题:##比如如下代码获取到一个jsonlet data=getDetails(ctx); data.name;//得到的是undefined 思考:加上一句data = eval(&amp;#39;(&amp;#39;+data+&amp;#39;)&amp;#39;); 原因:一般返回的是一串字符串，所以不能直接使用，可以用eval()将字符串转换为json对象。 问题2:那为什么要加这中间这一串其实可以看这一个">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-04T16:03:37.585Z">
+<meta property="og:updated_time" content="2019-01-04T16:33:33.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="b">
-<meta name="twitter:description" content="碰到的第一个问题:##比如如下代码获取到一个jsonlet data=getDetails(ctx); data.name;//得到的是undefined ##解决方法:加上一句data = eval(&amp;#39;(&amp;#39;+data+&amp;#39;)&amp;#39;);">
+<meta name="twitter:description" content="碰到的第一个问题:##比如如下代码获取到一个jsonlet data=getDetails(ctx); data.name;//得到的是undefined 思考:加上一句data = eval(&amp;#39;(&amp;#39;+data+&amp;#39;)&amp;#39;); 原因:一般返回的是一串字符串，所以不能直接使用，可以用eval()将字符串转换为json对象。 问题2:那为什么要加这中间这一串其实可以看这一个">
 
 
 
@@ -315,7 +315,11 @@
       
         <h1 id="碰到的第一个问题"><a href="#碰到的第一个问题" class="headerlink" title="碰到的第一个问题:"></a>碰到的第一个问题:</h1><p>##比如如下代码获取到一个json<br><code>let data=getDetails(ctx);
 data.name;//得到的是undefined</code></p>
-<p>##解决方法:<br>加上一句<br><code>data = eval(&#39;(&#39;+data+&#39;)&#39;);</code></p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考:"></a>思考:</h2><p>加上一句<br><code>data = eval(&#39;(&#39;+data+&#39;)&#39;);</code></p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因:"></a>原因:</h2><p>一般返回的是一串字符串，所以不能直接使用，<br>可以用eval()将字符串转换为json对象。</p>
+<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2:"></a>问题2:</h2><p>那为什么要加这中间这一串<br>其实可以看这一个输出<br>`<br>console.log(eval(‘{}’))//undefined</p>
+<p>console.log(eval(‘({})’))//Object[object]<br>`<br>由于eval是执行这段代码，而{}是默认加在头尾的所以要加()</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>但是其实更建议使用JSON.parse();<br>当时脑子抽了给忘了</p>
 
       
     </div>
@@ -475,7 +479,7 @@ data.name;//得到的是undefined</code></p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#碰到的第一个问题"><span class="nav-number">1.</span> <span class="nav-text">碰到的第一个问题:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#碰到的第一个问题"><span class="nav-number">1.</span> <span class="nav-text">碰到的第一个问题:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-number">1.1.</span> <span class="nav-text">思考:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">1.2.</span> <span class="nav-text">原因:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题2"><span class="nav-number">1.3.</span> <span class="nav-text">问题2:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li></ol></div>
             
 
           </div>
